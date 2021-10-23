@@ -2,19 +2,19 @@ package mru.game.model;
 
 public class Player {
 	
-	public Player(String name, String id, int numOfWins) {
+	public Player(String name, int numberOfWin, int balance) {
 		this.name = name;
-		this.id = id;
-		this.numOfWins = numOfWins;
+		this.balance = balance;
+		this.numberOfWin = numberOfWin;
 	}
 	/**
 	 * This class represent each player record in the Database
 	 * It is basically a model class for each record in the txt file
 	 */
-	String name;
-	String id; 
-	int numOfWins;
-	public int getBalance;
+	String name; 
+	int numberOfWin;
+	int balance;
+	
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;
@@ -24,7 +24,7 @@ public class Player {
 		return null;
 	}
 	public Integer getNumberOfWin() {
-		return numOfWins;
+		return numberOfWin;
 		// TODO Auto-generated method stub
 		
 	}

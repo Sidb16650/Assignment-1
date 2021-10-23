@@ -169,7 +169,7 @@ public class GameManager {
 			while (fileReader.hasNextLine()) {
 				currentLine = fileReader.nextLine();
 				splittedLine = currentLine.split(",");
-				Player p = new Player(splittedLine[0],splittedLine[1], Integer.parseInt(splittedLine[2]));
+				Player p = new Player(splittedLine[0],Integer.parseInt(splittedLine[1]), Integer.parseInt(splittedLine[2]));
 				players.add(p); 
 			}
 			fileReader.close();
@@ -182,9 +182,9 @@ public class GameManager {
 		String player;
 		int win;
 		int highestWin = Integer.MIN_VALUE;
-		ArrayList<Integer> numberOfWins = new ArrayList<Integer>(); // create separate arraylist for number of wins of each players
+		ArrayList<Integer> numberOfWin = new ArrayList<Integer>(); // create separate arraylist for number of wins of each players
 		for (Player p: players) {
-		numberOfWins.add(p.getNumberOfWin()); // add # wins into the list numberOfWin
+		numberOfWin.add(p.getNumberOfWin()); // add # wins into the list numberOfWin
 		
 			}
 		System.out.println("\t \t - TOP PLAYER - ");
@@ -192,7 +192,7 @@ public class GameManager {
 		System.out.println("| NAME               | # WINS              |");
 		System.out.println("+====================+=====================+");
 		for (Player p: players) { // for each player in the playerList
-		highestWin = Collections.max(numberOfWins); // highestWin = maximum value of #win in the previous numberofWin list
+		highestWin = Collections.max(numberOfWin); // highestWin = maximum value of #win in the previous numberofWin list
 		if (p.getNumberOfWin() >= highestWin) { // if player's #wins >= highestWin
 		if (p.getNumberOfWin() > highestWin) { // if player's #win > highest
 		highestWin = p.getNumberOfWin(); // that #wins of player will be the new highest win
