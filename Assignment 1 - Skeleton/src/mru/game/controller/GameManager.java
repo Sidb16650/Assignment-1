@@ -160,6 +160,7 @@ public class GameManager {
 	private void loadData() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		//
+		//
 		File db = new File(FILE_PATH);
 		String currentLine;
 		String[] splittedLine;
