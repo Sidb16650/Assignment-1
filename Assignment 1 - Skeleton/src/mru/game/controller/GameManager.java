@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import mru.game.model.Player;
@@ -23,12 +24,13 @@ public class GameManager {
 	private final String FILE_PATH = "res/CasinoInfo.txt";
 	ArrayList<Player> players;
 	MenuOptions optionsMen;
+	Scanner input;
 	
 
 	public GameManager()  {
 		players = new ArrayList<>();
 		optionsMen = new MenuOptions();
-
+		input = new Scanner(System.in);
 		
 	}
 	
@@ -68,22 +70,25 @@ public class GameManager {
 		
 	}
 
-	private void Search() {
+	private void Search() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		char option = optionsMen.showSubMenu();
 		
 		switch (option) {
 		
-		case 'T':
+		case 't':
 			showTopPlayer();
+			
 			break;
-		case 'L':
-			Player ply = lookingForName();
-			optionsMen.showPlayer(ply);
+		case 'l':
+			System.out.print("Enter name:");
+			String lookForName = input.nextLine().trim().toUpperCase();
+			lookingForName(lookForName);
 			break;
 			
-		case 'B':
-			backToMenu();
+			
+		case 'b':
+			launchApplication();
 			break;
 		}
 			
@@ -91,33 +96,60 @@ public class GameManager {
 	}
 		
 
-	private void backToMenu() {
+	private Player lookingForName(String lookForName) throws FileNotFoundException {
 		// TODO Auto-generated method stub
+		Scanner nameScan  = new Scanner(System.in);
+	
 		
-	}
-
-	private Player lookingForName() {
-		// TODO Auto-generated method stub
-		String name = optionsMen.promtName();
+		String name = lookForName;
+		int balance = 0;
+		int win = 0;
+		//optionsMen.promptName();
 		Player ply = null;
 		
 		for (Player p: players) {
-			if (p.getName().equals(name)) {
+			if (p.getName().equals(lookForName)) {
 				ply = p;
+				name = ply.getName();
+				win = ply.getNumberOfWin();
+				balance = ply.getBalance();
 				break;
+			}
+			
+			else {
+				name = "Player not found";
+				win = 0;
+				balance = 0;
 			}
 		}
 		
+
+		System.out.println("\t \t  - PLAYER INFO -");
+		System.out.println("+====================+===============+====================+"); 
+		System.out.println("| NAME               | # WINS        | BALANCE            |");
+		System.out.println("+====================+===============+====================+");
+		System.out.printf("%s%-19s%s%-14d%s%s%-17d%s", "| ", name , "| ", win , "| ", "$ ", balance , "|");
+		System.out.print("\n");
+		System.out.println("+--------------------+---------------+--------------------+ \n\n");
+		System.out.println("Press 'Enter' to continue...");
+		String enter = input.nextLine();
+		while (enter != null) {
+		if (enter.equals("")) {
+		launchApplication();
+		}
+		}
 		return ply;
 		
 	}
 
+	
 	private void Save() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		File db = new File(FILE_PATH);
 		PrintWriter pw = new PrintWriter(db);
 	for (Player p:players) {
 		pw.println(p.format());
+		System.out.println("Saved");
 		
 	}
 	
@@ -145,10 +177,47 @@ public class GameManager {
 	}
 	
 	
-	private void showTopPlayer() {
+	private void showTopPlayer() throws FileNotFoundException {
+		Player topPlayer;
+		String player;
+		int win;
+		int highestWin = Integer.MIN_VALUE;
+		ArrayList<Integer> numberOfWins = new ArrayList<Integer>(); // create separate arraylist for number of wins of each players
+		for (Player p: players) {
+		numberOfWins.add(p.getNumberOfWin()); // add # wins into the list numberOfWin
 		
+			}
+		System.out.println("\t \t - TOP PLAYER - ");
+		System.out.println("+====================+=====================+");
+		System.out.println("| NAME               | # WINS              |");
+		System.out.println("+====================+=====================+");
+		for (Player p: players) { // for each player in the playerList
+		highestWin = Collections.max(numberOfWins); // highestWin = maximum value of #win in the previous numberofWin list
+		if (p.getNumberOfWin() >= highestWin) { // if player's #wins >= highestWin
+		if (p.getNumberOfWin() > highestWin) { // if player's #win > highest
+		highestWin = p.getNumberOfWin(); // that #wins of player will be the new highest win
+		}
+		String topPlayerName = p.getName(); // get name of that highest wins player
+		System.out.printf("%s%-19s%s%-20d%s","| ",topPlayerName,"| ", highestWin ,"|\n");
+		System.out.println("+--------------------+---------------------+");
+		}
+		}
+		System.out.println("\n");
+		System.out.println("Press 'Enter' to continue...");
+		String enter = input.nextLine();
+		while (enter != null) {
+		if (enter.equals("")) {
+		launchApplication();
+	
+		
+		}
+	
+	
+		}
+
 	}
+}
 	
 
 
-}
+

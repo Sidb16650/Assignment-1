@@ -14,13 +14,23 @@ public class Player {
 	String name;
 	String id; 
 	int numOfWins;
-	public Object getName() {
+	public int getBalance;
+	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 	public char[] format() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public Integer getNumberOfWin() {
+		return numOfWins;
+		// TODO Auto-generated method stub
+		
+	}
+	public int getBalance() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

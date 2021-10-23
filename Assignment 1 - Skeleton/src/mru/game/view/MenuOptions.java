@@ -35,16 +35,17 @@ public class MenuOptions {
 		
 	}
 	
-	public String promtName() {
-		System.out.println("Enter name here");
-		String name = input.nextLine().trim();
-		return name;
-	}
+	//public String promptName() {
+	//	System.out.println("Enter name here:");
+	//	String name = input.nextLine().trim();
+	//	return name;
+	//}
 	
 	public void showPlayer(Player ply) {
 		
 		System.out.println(ply);
 		
 	}
-	
 }
+	
+	
