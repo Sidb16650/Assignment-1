@@ -74,6 +74,8 @@ public class Card {
 			name = "Jack of ";
 		else if (rank == 12)
 			name = "Queen of ";
+		else if (rank == 13)
+			name = "King of ";
 		
 		return name + suit;
 	}

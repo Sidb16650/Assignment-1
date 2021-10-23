@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import mru.game.model.HiLowSameGame;
 import mru.game.model.Player;
 import mru.game.view.MenuOptions;
 
@@ -50,7 +51,8 @@ public class GameManager {
 			switch (option) {
 			
 			case 'p':
-				playGame();
+				new HiLowSameGame();
+				//playGame();
 				break;
 			case 's':
 				Search();

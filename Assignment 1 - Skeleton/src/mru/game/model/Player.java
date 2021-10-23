@@ -19,6 +19,12 @@ public class Player {
 		// TODO Auto-generated method stub
 		return name;
 	}
+	
+	public void setName(String name) 
+	{
+		this.name = name;
+	}
+	
 	public char[] format() {
 		// TODO Auto-generated method stub
 		return null;
@@ -28,9 +34,20 @@ public class Player {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void setBalance(int balance) 
+	{
+		this.balance = balance;
+	}
+	
 	public int getBalance() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public void setNumberOfWin(int numberOfWin) 
+	{
+		this.numberOfWin = numberOfWin;
 	}
 	
 	
